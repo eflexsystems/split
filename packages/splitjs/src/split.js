@@ -513,17 +513,17 @@ const Split = (idsOption, options = {}) => {
         self.stop = stopDragging.bind(self)
 
         // All the binding. `window` gets the stop events in case we drag out of the elements.
-        global[addEventListener]('mouseup', self.stop)
-        global[addEventListener]('touchend', self.stop)
-        global[addEventListener]('touchcancel', self.stop)
-        global[addEventListener]('mousemove', self.move)
-        global[addEventListener]('touchmove', self.move)
+        global[addEventListener]('mouseup', self.stop, { passive: true })
+        global[addEventListener]('touchend', self.stop, { passive: true })
+        global[addEventListener]('touchcancel', self.stop, { passive: true })
+        global[addEventListener]('mousemove', self.move, { passive: true })
+        global[addEventListener]('touchmove', self.move, { passive: true })
 
         // Disable selection. Disable!
-        a[addEventListener]('selectstart', NOOP)
-        a[addEventListener]('dragstart', NOOP)
-        b[addEventListener]('selectstart', NOOP)
-        b[addEventListener]('dragstart', NOOP)
+        a[addEventListener]('selectstart', NOOP, { passive: true })
+        a[addEventListener]('dragstart', NOOP, { passive: true })
+        b[addEventListener]('selectstart', NOOP, { passive: true })
+        b[addEventListener]('dragstart', NOOP, { passive: true })
 
         a.style.userSelect = 'none'
         a.style.webkitUserSelect = 'none'
@@ -632,10 +632,12 @@ const Split = (idsOption, options = {}) => {
             gutterElement[addEventListener](
                 'mousedown',
                 pair[gutterStartDragging],
+                { passive: true }
             )
             gutterElement[addEventListener](
                 'touchstart',
                 pair[gutterStartDragging],
+                { passive: true }
             )
 
             parent.insertBefore(gutterElement, element.element)
