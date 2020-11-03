@@ -631,13 +631,11 @@ const Split = (idsOption, options = {}) => {
             // Attach bound event listener
             gutterElement[addEventListener](
                 'mousedown',
-                pair[gutterStartDragging],
-                { passive: true }
+                pair[gutterStartDragging]
             )
             gutterElement[addEventListener](
                 'touchstart',
-                pair[gutterStartDragging],
-                { passive: true }
+                pair[gutterStartDragging]
             )
 
             parent.insertBefore(gutterElement, element.element)
